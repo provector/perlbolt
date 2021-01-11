@@ -92,14 +92,17 @@ references. These represent Neo4j types according to the following:
  Float            scalar
  String           scalar
  Bytes            scalar
+ Point            arrayref (Neo4j::Bolt::Point)
+ Temporal         DateTime and DateTime::Duration
  List             arrayref
  Map              hashref
  Node             hashref  (Neo4j::Bolt::Node)
  Relationship     hashref  (Neo4j::Bolt::Relationship)
  Path             arrayref (Neo4j::Bolt::Path)
 
-L<Nodes|Neo4j::Bolt::Node>, L<Relationships|Neo4j::Bolt::Relationship> and
-L<Paths|Neo4j::Bolt::Path> are represented in the following formats:
+L<Nodes|Neo4j::Bolt::Node>, L<Relationships|Neo4j::Bolt::Relationship>,
+L<Paths|Neo4j::Bolt::Path> and L<Points|Neo4j::Bolt::Point>
+are represented in the following formats:
 
  # Node:
  bless {
@@ -118,6 +121,9 @@ L<Paths|Neo4j::Bolt::Path> are represented in the following formats:
  bless [
    $node1, $reln12, $node2, $reln23, $node3, ...
  ], 'Neo4j::Bolt::Path'
+ 
+ # Point:
+ bless [ $neo4j_srid, $x, $y, $z ], 'Neo4j::Bolt::Point'
 
 =head1 METHODS
 
