@@ -1,15 +1,12 @@
 package Neo4j::Bolt::Point;
 # ABSTRACT: Representation of Neo4j Point
 
-$Neo4j::Bolt::Point::VERSION = '0.4200';
+$Neo4j::Bolt::Point::VERSION = '0.4201';
 
 use strict;
 use warnings;
 
-sub new {
-	my $class = shift;
-	return bless \@_, $class;
-}
+use parent 'Neo4j::Types::Point';
 
 1;
 
@@ -44,24 +41,18 @@ They can also be created using C<new()> and sent to Neo4j as Cypher
 parameters. Their coordinates and SRID can be accessed as shown in
 the synopsis above.
 
+This package inherits from L<Neo4j::Types::Point>, which offers an
+object-oriented interface to the point's coordinates and metadata.
+This is entirely optional to use.
+
 =head1 METHODS
 
-=over
-
-=item new()
-
- $point2d = Neo4j::Bolt::Point->new( $neo4j_srid, $x, $y );
- $point3d = Neo4j::Bolt::Point->new( $neo4j_srid, $x, $y, $z );
-
-Creates a new Point instance locally. Points can be used as Cypher
-parameter in statements sent to Neo4j). The new object will be
-initialized with any arguments provided.
-
-=back
+This package inherits all methods from L<Neo4j::Types::Point>.
 
 =head1 SEE ALSO
 
 L<Neo4j::Bolt>,
+L<Neo4j::Types::Point>,
 L<Cypher Manual: Spatial values|https://neo4j.com/docs/cypher-manual/current/syntax/spatial/>
 
 =head1 AUTHOR
